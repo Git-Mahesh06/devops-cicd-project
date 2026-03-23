@@ -1,0 +1,14 @@
+---
+- name: installing jenkins and java
+  hosts: localhost
+  become: true
+  tasks:
+   - name: installing jenkins java
+     script: jenkins.sh
+
+- name: installing docker and java
+  hosts: ci-agent
+  become: true
+  tasks:
+   - name: installing docker and java
+     script: doc.sh
