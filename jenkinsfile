@@ -2,16 +2,16 @@ pipeline {
     agent any
 
     stages {
-
         stage('Build Docker Image') {
             steps {
-                sh 'sudo docker build -t prt-app .'
+                sh 'docker build -t prt-app .'
             }
         }
 
         stage('Run Container') {
             steps {
-                sh 'sudo docker run -d -p 8081:80 prt-app'
+                sh 'docker rm -f prt-container || true'
+                sh 'docker run -d --name prt-container -p 8081:80 prt-app'
             }
         }
     }
